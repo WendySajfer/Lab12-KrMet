@@ -315,7 +315,7 @@ private:
 		return { Q, R };
 	}
 	vector<BigNumberOperations> div_operation(BigNumberOperations Big2) {
-		//Sleep(1);
+		Sleep(1);
 		vector <BigNumberOperations> Q_div_R_vec;
 		BigNumberOperations Null_, one;
 		Null_.Flag_work = true;

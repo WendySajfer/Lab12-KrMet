@@ -29,27 +29,27 @@ int main()
 	BigNumberOperations Big;
 	long long int T;
 	string buf_str;
-	cout << "Введите нечетное число: " << endl;
+	cout << "Enter an odd number: " << endl;
 	while(true) {
 		while (true) {
 			cin >> buf_str;
 			Big.create(buf_str, 10);
 			if (!Big.get_work()) {
-				cout << "Некорректный ввод. Введите заново" << endl;
+				cout << "Incorrect input. Enter again:" << endl;
 			}
 			else break;
 		}
 		if (Big == num_2 || Big == num_3) {
-			cout << "Число простое." << endl;
+			cout << "The number is simple." << endl;
 			system("pause");
 			return 0;
 		}
 		if (Big < num_5 || Big % num_2 == num_0) {
-			cout << "Неверное число. Введите заново" << endl;
+			cout << "Incorrect input. Enter again:" << endl;
 		}
 		else break;
 	}
-	cout << "Введите число итераций: " << endl;
+	cout << "Enter the number of iterations: " << endl;
 	cin >> T;
 	long long int s = 0;
 	BigNumberOperations r, u, v, buf;
@@ -59,7 +59,7 @@ int main()
 		r /= num_2;
 		s += 1;
 	}
-	cout << Big << " представимо в виде: 2^" << s << " * " << r << " + 1" << endl;
+	cout << Big << " representable as: 2^" << s << " * " << r << " + 1" << endl;
 
 	for (int i = 0; i < T; ++i) {
 		while (true) {
@@ -80,7 +80,7 @@ int main()
 			v = degreeRemainder2(v, num_2, Big);
 
 			if (v == num_1) {
-				cout << "Число " << Big << " составное." << endl;
+				cout << "Number " << Big << " is composite." << endl;
 				system("pause");
 				return 0;
 			}
@@ -88,12 +88,12 @@ int main()
 				break;
 		}
 		if (v != Big - num_1) {
-			cout << "Число " << Big << " составное." << endl;
+			cout << "Number " << Big << " is composite." << endl;
 			system("pause");
 			return 0;
 		}
 	}
-	cout << "Число " << Big << " вероятно простое." << endl;
+	cout << "Number " << Big << " is probably simple." << endl;
 	system("pause");
 	return 0;
 }
