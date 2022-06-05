@@ -1,5 +1,4 @@
 #include <iostream>
-#include <deque> 
 #include <vector> 
 #include <string>
 #include <math.h>
