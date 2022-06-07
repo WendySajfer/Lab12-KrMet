@@ -86,7 +86,6 @@ int main()
 		}
 		v = degreeRemainder2(u, r, Big);
 		cout << "V: " << v << endl;
-
 		if (v == num_1 || v == Big - num_1) {
 			continue;
 		}
