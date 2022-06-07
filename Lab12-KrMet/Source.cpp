@@ -7,15 +7,23 @@ using namespace std;
 
 BigNumberOperations degreeRemainder2(BigNumberOperations a, BigNumberOperations degree, BigNumberOperations div) {
 	a %= div;
-
 	if (degree != num_0) {
-		if (degree % num_2 == num_0) {
+		BigNumberOperations buf = degree % num_2;
+		if (buf == num_0) {
 			BigNumberOperations temp_a = degreeRemainder2(a, degree / num_2, div);
-			return (temp_a * temp_a) % div;
+			buf = temp_a;
+			buf *= temp_a;
+			buf %= div;
+			return buf;
 		}
 		else {
 			BigNumberOperations temp_a = degreeRemainder2(a, (degree - num_1) / num_2, div);
-			return (((temp_a * temp_a) % div) * a) % div;
+			buf = temp_a;
+			buf *= temp_a;
+			buf %= div;
+			buf *= a;
+			buf %= div;
+			return buf;
 		}
 	}
 	else {
@@ -32,12 +40,16 @@ int main()
 	cout << "Enter an odd number: " << endl;
 	while(true) {
 		while (true) {
+			BigNumberOperations cin_buf;
 			cin >> buf_str;
-			Big.create(buf_str, 10);
+			cin_buf.create(buf_str, 10);
+			Big = cin_buf;
 			if (!Big.get_work()) {
 				cout << "Incorrect input. Enter again:" << endl;
 			}
 			else break;
+			cin.clear();
+			cin.ignore(1000, '\n');
 		}
 		if (Big == num_2 || Big == num_3) {
 			cout << "The number is simple." << endl;
@@ -46,6 +58,8 @@ int main()
 		}
 		if (Big < num_5 || Big % num_2 == num_0) {
 			cout << "Incorrect input. Enter again:" << endl;
+			cin.clear();
+			cin.ignore(1000, '\n');
 		}
 		else break;
 	}

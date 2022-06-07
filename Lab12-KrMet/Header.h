@@ -1,5 +1,4 @@
 #include <iostream>
-#include <deque> 
 #include <vector> 
 #include <string>
 #include <math.h>
@@ -150,6 +149,18 @@ private:
 		return min_big;
 	}
 	void mult(BigNumberOperations Big2) {
+		while (true) {
+			if (BigNumber[0] == 0 && BigNumber.size() > 1) {
+				BigNumber.erase(BigNumber.begin());
+			}
+			else break;
+		}
+		while (true) {
+			if (Big2.BigNumber[0] == 0 && Big2.BigNumber.size() > 1) {
+				Big2.BigNumber.erase(Big2.BigNumber.begin());
+			}
+			else break;
+		}
 		vector<int> BigNumber_buf = {  };
 		int c = 0, buf = 0, k = BigNumber.size(), l = Big2.BigNumber.size();
 		reverse(BigNumber.begin(), BigNumber.end());
@@ -207,19 +218,23 @@ private:
 				bufq--;
 				q -= one;
 			}
-			step = pow(b, l - i - 1);
+			step = l - i - 1;
 			b_ik.BigNumber.push_back(1);
 			while (step != 0) {
-				if (step == 1)
-					break;
-				step /= b;
 				b_ik.BigNumber.push_back(0);
+				step--;
 			}
+			
 			vb_ik = V;
 			vb_ik *= b_ik;
 			qvb_ik = q;
 			qvb_ik *= vb_ik;
-			U.BigNumber.erase(U.BigNumber.begin());
+			while (true) {
+				if (U.BigNumber[0] == 0 && U.BigNumber.size() > 1) {
+					U.BigNumber.erase(U.BigNumber.begin());
+				}
+				else break;
+			}
 			U -= qvb_ik;
 			while (true) {
 				if (U.Flag_minus) {
@@ -315,7 +330,7 @@ private:
 		return { Q, R };
 	}
 	vector<BigNumberOperations> div_operation(BigNumberOperations Big2) {
-		Sleep(1);
+		//Sleep(1);
 		vector <BigNumberOperations> Q_div_R_vec;
 		BigNumberOperations Null_, one;
 		Null_.Flag_work = true;
@@ -335,6 +350,18 @@ private:
 		else
 			Q_div_R_vec = div(Big2);
 		Q_div_R_vec[1].Flag_minus = false;
+		while (true) {
+			if (Q_div_R_vec[0].BigNumber[0] == 0 && Q_div_R_vec[0].BigNumber.size() > 1) {
+				Q_div_R_vec[0].BigNumber.erase(Q_div_R_vec[0].BigNumber.begin());
+			}
+			else break;
+		}
+		while (true) {
+			if (Q_div_R_vec[1].BigNumber[0] == 0 && Q_div_R_vec[1].BigNumber.size() > 1) {
+				Q_div_R_vec[1].BigNumber.erase(Q_div_R_vec[1].BigNumber.begin());
+			}
+			else break;
+		}
 		if (Q_div_R_vec.size() < 2) 
 			return { *this, Null_ };
 		while (true) {
